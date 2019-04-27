@@ -26,10 +26,8 @@
 \usepackage{booktabs}
 \usepackage{graphicx, changepage}
 \usepackage{CJKutf8} %for chinese
-\usepackage{xeCJK} %for japanese
 \usepackage[OT2,T1]{fontenc} %for russian
 \usepackage{kotex} % korean
-
 
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
@@ -78,6 +76,13 @@
 %%
 %% end of the preamble, start of the body of the document source.
 \begin{document}
+
+\makeatletter
+\renewcommand\subsection{\@startsection{subsection}{3}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {-1.5ex \@plus -.2ex}% Formerly 1.5ex \@plus .2ex
+                                     {\normalfont\normalsize\bfseries}}
+\makeatother
 
 %%
 %% The "title" command has an optional parameter,
@@ -141,11 +146,13 @@
 \maketitle
 
 \section{Introduction}
-Minimalism is a contemporary art movement born in the 60s and is still today widely used and applied, among other fields, in photography. The core idea of minimalistic photography is to capture simple lines or repetitive patterns and restricted subjects and amount of colors. These simple guidelines can easily let a great place to different trends within the movement and might also vary according to different cultural contexts. Furthermore, the aspect of evolution of an artistic movement in time is not negligible, especially with the rise of new technologies, the change of lifestyles and visual landscapes that occurred over the last 50 years.
+Minimalism is a contemporary art movement born in the 60s and is still today widely used and applied, among other fields, in photography. The core idea of minimalistic photography is to capture simple lines or repetitive patterns, and restricted subjects and amount of colors. These simple guidelines easily offer a great place to different trends within the movement and might also vary according to different cultural contexts. Furthermore, the aspect of evolution of an artistic movement in time is not negligible, especially with the rise of new technologies and the change of our lifestyles and visual landscapes that occurred over the last 50 years.
 
-Nowadays, artistic movements, such as minimalism, can benefit from greater exposures thanks to social media. The diversity of the platforms available, such as Instagram, Pinterest or Youpic, enable to easily share and explore similar content. Small and larger communities are thus established by these shared inspirations and trends are created, usually thanks to the use of tags or hashtags. In this era of globalisation, cross-cultural exchanges are more easily performed and the variety of possible expressions expand.
+Indeed, nowadays, artistic movements, such as minimalism, can benefit from greater exposures thanks to social media. The diversity of the platforms available, such as Instagram, Pinterest or Youpic, enable to easily share and explore similar content. Small and larger communities are thus established by these shared inspirations and trends are created, usually thanks to the use of tags or hashtags. In this era of globalisation, cross-cultural exchanges are more easily performed and the variety of possible expressions expand. However, do these trends still remain specific to a common culture or are they free from geographical boundaries?
 
-Thereby, the social platform flickr, which allows professionals and non-professionals to share pictures and provide them with a variety of tags to connect with their piers, has a strong community of minimalistic photographers. Grouped under tags such as \textit{'minimalis',  '{\fontencoding{OT2}\selectfont minimalism}', '\begin{CJK*}{UTF8}{gbsn}极简主义\end{CJK*}', '\begin{CJK*}{UTF8}{gbsn}ミニマリズム\end{CJK*}', '미니멀리즘'}, the pictures seem to embrace a great variety of possible interpretation of the movement. It is based on this community of tags that the project tries to establish the variety of existing trends in minimalism and to determine their possible correlations with cultural backgrounds based on the geo-location of the provided pictures. The following paper first describes the dataset used from the Yahoo Flickr Creative Commons and the set of methods applied to the data. In order to determine the trends, tag-based clustering was used, followed by a set of classifiers in order to determine a time and place dependence. In addition to this first range of work, image processing was performed in order to obtain more features based on the content of the images. Finally the results are discussed in Section 4 and a final conclusion is made.
+On the social platform flickr, which allows professionals and non-professionals to share pictures and provide them with a variety of tags to connect with their piers, a strong community of minimalistic photographers exists. Grouped under tags such as \textit{'minimalis',  '{\fontencoding{OT2}\selectfont minimalism}', '\begin{CJK*}{UTF8}{gbsn}极简主义\end{CJK*}', '\begin{CJK*}{UTF8}{gbsn}ミニマリズム\end{CJK*}', '미니멀리즘'}, the pictures seem to embrace a great variety of possible interpretations of the movement. It is based on this community of tags that the project tries to establish the variety of existing trends in minimalism and to determine their possible correlations with cultural backgrounds based on the geo-location of the provided pictures. 
+
+This paper first describes the dataset used from the Yahoo Flickr Creative Commons and the set of methods applied to the data. In order to determine the trends, tag-based clustering was used, followed by a set of classifiers to determine most relevant metadata and find a time and place dependence. In addition to this first range of work, image processing was performed to obtain more features based on the content of the images. Finally the results are discussed in section 4 and a conclusion is made.
 
 \section{Data}
 The data used in the context of the project is the Yahoo Flickr Creative Commons dataset that can be downloaded via the flickr api at \url{https://www.flickr.com/services/api/}. Each image contains a photo\_id, a jpeg url, a title, a description, a camera type and tags. The corpus thus includes 1'027'777 auto-tagged images, among which 4'356  images are also user-tagged and 193'153 are geolocalized. The dataset also contains time information 99,99\% of the time.
@@ -177,10 +184,25 @@ The data used in the context of the project is the Yahoo Flickr Creative Commons
 %\end{itemize}
 
 
-\section{Method}
-
+\section{Methods}
+\subsection*{Tag-based clustering.}
+\subsection*{Classifying relevant metadata.}
+\subsection*{Classifying for time and place dependence.}
+\subsection*{Image processing.}
 \section{Results}
+From the very first steps of data processing, our understanding of minimalism grew and we were able to realize that minimalism is a way of perceiving a surrounding environment and that no specific subject requires to be created for the purpose of a minimalistic picture. Indeed, the content of the tags indicate a great variety of image contents, from indoor to outdoor topics. Furthermore, minimalism appears to be mostly prevalent in western Europe and the USA's East and West coasts. Regarding other continents, the movement appears to be more used in touristic places, mainly national parks, and in large cities rather than in rural environments.
+\subsection*{Trends in minimalism.}
+Out of the first clustering performed on the tags, 5 major trends were outlined.
+	\begin{itemize}
+		\item Indoor related activities: home, food
+		\item Urban environments
+		\item Lights
+		\item Landscapes, sky and sea
+		\item Nature (macro pictures)
+	\end{itemize}
+However, based on the maps generated from these clusters, none of these five trends seem to belong to a specific region of the world. Although no direct correlation can be drew between a trend and a culture, we can see tendencies. Urban and lights content correspond to major urban centres located in Asia's and USA's East coasts and Europe. Landscapes, on the other hand, are more equally spread among the different continents and are especially focused on coasts, due to the dominance of sea views. Nature is more dominant in wooded regions, such as wildlife sanctuaries, nature reserves and national parks. 
 
+Thereby, if minimalism is not related to a culture, it can be still considered as a way of expressing a certain lifestyle.
 
 \section{Conclusions}
 
